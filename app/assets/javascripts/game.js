@@ -43,6 +43,9 @@ Game.prototype.reveal = function(div, num) {
 Game.first_click = true
 
 
+// game instance
+var game = new Game();
+
 var onFieldClick = function() {
 	/* <div id="cell-i-j"></div> */
 	row = parseInt($(this).attr('id').charAt(5));
@@ -54,11 +57,11 @@ var onFieldClick = function() {
 	// TEMP -> jQuery generated game
 	if(Game.first_click) {
 		Game.first_click = false;
-		game = new Game();
 		game.interval = setInterval(function() {
 			$('#time time').text(game.counter);
 			game.counter++;
 		}, 1000);
+		game.reveal(this, 0);
 	} else {
 		game.reveal(this, 1 + Math.floor(Math.random()*7));
 	}
@@ -105,5 +108,11 @@ var main = function() {
 	});
 }
 
-$(document).on('page:load',main);
+$(document).on('page:load',function() {
+	// Reset on page:load ( the page dosn't get refreshed )
+	Game.first_click = true;
+	clearInterval(game.interval);
+	game.counter = 0;
+	main();
+});
 $(document).ready(main);
