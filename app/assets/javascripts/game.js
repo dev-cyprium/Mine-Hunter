@@ -1,21 +1,23 @@
-$(document).on('page:load',function(){
-	main();
-});
-
-
 var generateBoard = function() {
 	var totalWidth = 600;
 	var totalHeight = 600;
-	for(var i=0; i < 16; i++) {
-		for(var j=0; j < 16; j++) {
-			var $div = $("<div>", {id: 1, class: "cell"});
-			var w = totalWidth/16;
-			var h = totalHeight/16;
+	var rows = 10;
+	var cols = 10;
+	for(var i=0; i < rows; i++) {
+		for(var j=0; j < cols; j++) {
+			var $div = $("<div>", {id: 'cell-'+i+'-'+j, class: "cell"});
+			var w = totalWidth/rows;
+			var h = totalHeight/cols;
 			$div.css("width",w+"px");
 			$div.css("height",h+"px");
+			$div.hide();
 			$('#game').append($div);
 		}
 	}
+	$('.cell').each(function( index ) {
+		var d = index * 10;
+		$(this).delay(d).fadeIn(400);
+	});
 }
 
 var startgame = function() {
@@ -24,6 +26,7 @@ var startgame = function() {
 
 var main = function() {
 	$("#start").click(function() {
+		$(this).off();
 		$('.ui').animate(
 			{height: 0},1000
 		).promise().then(function() { 
@@ -32,3 +35,6 @@ var main = function() {
 			});
 	});
 }
+
+$(document).on('page:load',main);
+$(document).ready(main);

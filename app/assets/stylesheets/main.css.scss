@@ -83,9 +83,10 @@ article {
 	position: relative;
 	width: 600px;
 	height: 600px;
-	background-color: gray;
+	background-color: #404040;
 	margin: auto;
 	margin-bottom: 200px;
+	border-radius: 10px;
 	button {
 		position: absolute;
 		width: 200px;
@@ -101,7 +102,8 @@ article {
 	.cell {
 		box-sizing: border-box;
 		float: left;
-		background-color: red;
-		border: 1px solid white;	
+		background-color: gray;
+		border: 3px solid #404040;	
+		border-radius: 10px;
 	}
 }
