@@ -81,7 +81,7 @@ article {
 /* Game */
 #game {
 	position: relative;
-	width: 800px;
+	width: 600px;
 	height: 600px;
 	background-color: gray;
 	margin: auto;
@@ -99,7 +99,9 @@ article {
 		padding-top: 25%;
 	}
 	.cell {
+		box-sizing: border-box;
+		float: left;
 		background-color: red;
-		margin: 15px;
+		border: 1px solid white;	
 	}
 }
