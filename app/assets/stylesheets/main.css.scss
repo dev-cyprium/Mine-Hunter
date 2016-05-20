@@ -4,7 +4,7 @@
 /* Info/Score pages */
 body {
 	background: linear-gradient(#996699,#3399ff) no-repeat;
-	height: 1100px;
+	// height: 1200px;
 }
 
 nav {
@@ -73,12 +73,16 @@ article {
 	padding: 20px;
 	font-family: "Montserrat";
 	a {
-			text-decoration: none;
-			color: #003366;
+		text-decoration: none;
+		color: #003366;
 	}
 }
 
 /* Game */
+#time {
+	text-align: center;
+}
+
 #game {
 	position: relative;
 	width: 600px;
@@ -105,5 +109,9 @@ article {
 		background-color: gray;
 		border: 3px solid #404040;	
 		border-radius: 10px;
+
+		&:hover {
+			background-color: #595959;
+		}
 	}
 }
