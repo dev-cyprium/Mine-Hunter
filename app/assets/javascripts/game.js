@@ -20,10 +20,10 @@ Game.prototype.reveal = function(div, num) {
 				color = "red";
 				break;
 			case 3:
-				color = "yellow";
+				color = "orange";
 				break;
 			case 4:
-				color = "pink";
+				color = "brown";
 				break;
 			case 5:
 				color = "purple";
