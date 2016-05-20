@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MineHunter</title>
+  <title>Mine Hunter</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+	<nav>
+		<h1>Mine Hunter</h1>
+		<h2> - by Cyprium - </h2>
+		<div id="links">
+				<div class="item"><%= link_to "About", home_path %></div>
+				<div class="item"><%= link_to "Game", '#' %></div>
+				<div class="item"><%= link_to "Scores", '#' %></div>
+		</div>
+	</nav>
+		<%= yield %>
 
 </body>
 </html>
