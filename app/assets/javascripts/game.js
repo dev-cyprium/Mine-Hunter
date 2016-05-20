@@ -6,7 +6,38 @@ var Game = function() {
 };
 
 Game.prototype.reveal = function(div, num) {
-	$(div).css("background-color","white");
+	$(div).css("background-color","#d9d9d9");
+	$(div).off();
+
+	if (num > 0) {
+		$(div).append(num);
+		var color = "black";
+		switch(num) {
+			case 1:
+				color = "blue";
+				break;
+			case 2:
+				color = "red";
+				break;
+			case 3:
+				color = "yellow";
+				break;
+			case 4:
+				color = "pink";
+				break;
+			case 5:
+				color = "purple";
+				break;
+			case 6:
+				color = "green";
+				break;
+			case 7:
+				color = "magenta";
+				break;
+
+		}
+		$(div).css("color",color);
+	}
 };
 
 Game.first_click = true
@@ -25,7 +56,7 @@ var onFieldClick = function() {
 		Game.first_click = false;
 		game = new Game();
 	} else {
-		game.reveal(this, 0);
+		game.reveal(this, 1 + Math.floor(Math.random()*7));
 	}
 }
 

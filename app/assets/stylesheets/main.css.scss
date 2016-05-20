@@ -7,6 +7,15 @@ body {
 	// height: 1200px;
 }
 
+@mixin no-highlit {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;   
+}
+
 nav {
 	h1,h2 {
 		text-align: center;
@@ -103,13 +112,18 @@ article {
 		text-align: center;
 		padding-top: 25%;
 	}
-	.cell {
+	.cell { 
 		box-sizing: border-box;
 		float: left;
 		background-color: gray;
 		border: 3px solid #404040;	
 		border-radius: 10px;
+		transition: background-color 0.4s;
+		font-size: 32px;
+		line-height: 60px;
+		text-align: center;
 
+		@include no-highlit;
 		&:hover {
 			background-color: #595959;
 		}
