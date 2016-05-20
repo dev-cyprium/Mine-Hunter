@@ -1,8 +1,8 @@
 // Game class
 var Game = function() {
-	var rows = 10;
-	var cols = 10;
-
+	this.rows = 10;
+	this.cols = 10;
+	this.counter = 0;
 };
 
 Game.prototype.reveal = function(div, num) {
@@ -55,6 +55,10 @@ var onFieldClick = function() {
 	if(Game.first_click) {
 		Game.first_click = false;
 		game = new Game();
+		game.interval = setInterval(function() {
+			$('#time time').text(game.counter);
+			game.counter++;
+		}, 1000);
 	} else {
 		game.reveal(this, 1 + Math.floor(Math.random()*7));
 	}
