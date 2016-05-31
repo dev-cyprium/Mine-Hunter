@@ -135,7 +135,7 @@ var onFieldClick = function() {
 		game.populate(row,col);
 		game.update();
 	} else {
-		
+	
 	}
 }
 
