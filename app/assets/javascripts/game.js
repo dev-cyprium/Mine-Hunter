@@ -86,6 +86,9 @@ Game.prototype.update = function() {
 					case 8:
 						color = "indigo";
 						break;
+					case 10:
+						$(this.board[i][j].div).text("*");
+						break;
 				}
 				$(this.board[i][j].div).css("color",color);
 			}
