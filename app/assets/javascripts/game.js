@@ -1,3 +1,10 @@
+// Cell class
+var Cell = function() {
+	this.visible = true;
+	this.value = 0;
+	this.div = null;
+};
+
 // Game class
 var Game = function() {
 	this.rows = 10;
@@ -11,7 +18,7 @@ var Game = function() {
 
 	for(var i=0;i<this.rows;i++) {
 		for(var j=0;j<this.cols;j++) {
-			this.board[i][j] = 0;
+			this.board[i][j] = new Cell();
 		}
 	}
 };
@@ -21,16 +28,54 @@ var countMines = function(x,y,board,rows,cols) {
 	for(var i = x-1; i <= x+1; i++) {
 		for(var j = y-1; j <= y+1; j++) {
 			if(i >= 0 && i < rows && j >= 0 && j < cols) {
-				if(board[i][j] == 10) count++;
+				if(board[i][j].value == 10) count++;
 			}
 		}
 	}
 	return count;
 }
 
+Game.prototype.update = function() {
+	for(var i=0;i < this.rows; i++) {
+		for(var j=0; j < this.cols; j++) {
+			if(this.board[i][j].visible) {
+				$(this.board[i][j].div).text(this.board[i][j].value);
+				$(this.board[i][j].div).css("background","#bfbfbf");
+				var color = "black";
+				switch(this.board[i][j].value) {
+					case 1:
+						color = "blue";
+						break;
+					case 2:
+						color = "red";
+						break;
+					case 3:
+						color = "brown";
+						break;
+					case 4:
+						color = "purple";
+						break;
+					case 5:
+						color = "green";
+						break;
+					case 6:
+						color = "crimson";
+						break;
+					case 7:
+						color = "yellow";
+						break;
+					case 8:
+						color = "indigo";
+						break;
+				}
+				$(this.board[i][j].div).css("color",color);
+			}
+		}
+	}
+};
+
 Game.prototype.populate = function(cx, cy) {
-	var mines = 22;
-	console.log(cx + "," + cy);
+	var mines = 20;
 
 	// create an empty location around cursor without mines
 	// TODO: FIX cornet cases!!! important
@@ -39,7 +84,7 @@ Game.prototype.populate = function(cx, cy) {
 	for(var i = cx-xoffset; i <= cx+xoffset; i++) {
 		for(var j = cy-yoffset; j <= cy+yoffset; j++) {
 			if (i >= 0 && j >= 0 && i < this.rows && j < this.cols) {
-				this.board[i][j] = -1;
+				this.board[i][j].value = -1;
 			}
 		}
 	}
@@ -49,63 +94,21 @@ Game.prototype.populate = function(cx, cy) {
 		do {
 			r = Math.floor(Math.random()*this.rows);
 			c = Math.floor(Math.random()*this.cols);
-		} while(this.board[r][c] != 0);
-		this.board[r][c] = 10;
+		} while(this.board[r][c].value != 0);
+		this.board[r][c].value = 10;
 	}
 
 	// Populate the board with numbers
 	for(var i = 0; i < this.rows; i++) {
 		for(var j = 0; j < this.cols; j++) {
-			if (this.board[i][j] == 10) continue;
-			if (this.board[i][j] == -1) {
-				this.board[i][j] = 0;
+			if (this.board[i][j].value == 10) continue;
+			if (this.board[i][j].value == -1) {
+				this.board[i][j].value = 0;
 			}
-			this.board[i][j] = countMines(i,j,this.board,this.rows,this.cols);
+			this.board[i][j].value = countMines(i,j,this.board,this.rows,this.cols);
 		}
 	}
 
-	// TEMP : show all numbers & mines
-	/*
-	for(var i = 0; i < this.rows; i++) {
-		for(var j = 0; j < this.cols; j++) {
-			$("#cell-"+i+"-"+j).text(this.board[i][j]);
-		}
-	} */
-};
-
-Game.prototype.reveal = function(div, num) {
-	$(div).css("background-color","#d9d9d9");
-	$(div).off();
-
-	if (num > 0) {
-		$(div).append(num);
-		var color = "black";
-		switch(num) {
-			case 1:
-				color = "blue";
-				break;
-			case 2:
-				color = "red";
-				break;
-			case 3:
-				color = "orange";
-				break;
-			case 4:
-				color = "brown";
-				break;
-			case 5:
-				color = "purple";
-				break;
-			case 6:
-				color = "green";
-				break;
-			case 7:
-				color = "magenta";
-				break;
-
-		}
-		$(div).css("color",color);
-	}
 };
 
 Game.first_click = true
@@ -130,16 +133,11 @@ var onFieldClick = function() {
 			game.counter++;
 		}, 1000);
 		game.populate(row,col);
-		$('.cell').each(function( index ) {
-			r = parseInt($(this).attr('id').charAt(5));
-			c = parseInt($(this).attr('id').charAt(7));
-			game.reveal(this, game.board[r][c]);
-		});
+		game.update();
 	} else {
-		// game.reveal(this, 1 + Math.floor(Math.random()*7));
+		
 	}
 }
-
 
 
 var generateBoard = function() {
@@ -156,6 +154,7 @@ var generateBoard = function() {
 			$div.css("height",h+"px");
 			$div.hide();
 			$div.click(onFieldClick);
+			game.board[i][j].div = $div;
 			$('#game').append($div);
 		}
 	}
