@@ -1,8 +1,27 @@
+// Queue 
+var Queue = function() {
+	this.queue = [];
+}
+
+Queue.prototype.enqueue = function(data) {
+	this.queue.push(data);
+}
+
+Queue.prototype.dequeue = function() {
+	return this.queue.shift();
+}
+
+Queue.prototype.isEmpty = function() {
+	return this.queue.length == 0;
+}
+
 // Cell class
-var Cell = function() {
-	this.visible = true;
+var Cell = function(x,y) {
+	this.visible = false;
 	this.value = 0;
 	this.div = null;
+	this.x = x;
+	this.y = y;
 };
 
 // Game class
@@ -18,7 +37,7 @@ var Game = function() {
 
 	for(var i=0;i<this.rows;i++) {
 		for(var j=0;j<this.cols;j++) {
-			this.board[i][j] = new Cell();
+			this.board[i][j] = new Cell(i,j);
 		}
 	}
 };
@@ -39,7 +58,7 @@ Game.prototype.update = function() {
 	for(var i=0;i < this.rows; i++) {
 		for(var j=0; j < this.cols; j++) {
 			if(this.board[i][j].visible) {
-				$(this.board[i][j].div).text(this.board[i][j].value);
+				if(this.board[i][j].value > 0) $(this.board[i][j].div).text(this.board[i][j].value);
 				$(this.board[i][j].div).css("background","#bfbfbf");
 				var color = "black";
 				switch(this.board[i][j].value) {
@@ -133,12 +152,45 @@ var onFieldClick = function() {
 			game.counter++;
 		}, 1000);
 		game.populate(row,col);
-		game.update();
-	} else {
-	
 	}
+	reveal(row, col);
+	game.update(row, col);
+	
 }
 
+var getNeighbours = function(cell, visited) {
+	var neighbours = [];
+
+	for(var i = cell.x - 1; i <= cell.x + 1; i++) {
+		for(var j = cell.y - 1; j <= cell.y + 1; j++) {
+			 if(i >= 0 && i < game.rows && j >= 0 && j < game.cols) {
+				if (i == cell.x && j == cell.y) continue;
+				var nb = game.board[i][j];
+				if($.inArray(nb, visited) != -1) continue;
+				neighbours.push(nb);
+			}
+		}
+	}
+
+	return neighbours;
+}
+
+var reveal = function(cx, cy) {
+	var queue = new Queue();
+	var visited = [];
+	visited.push(game.board[cx][cy]);
+	queue.enqueue(game.board[cx][cy]);
+	while(!queue.isEmpty()) {
+		var cell = queue.dequeue();
+		visited.push(cell);
+		cell.visible = true;
+		if (cell.value > 0) continue;
+		var neighbours = getNeighbours(cell, visited);
+		for(var i=0;i < neighbours.length; i++) {
+			queue.enqueue(neighbours[i]);
+		}
+	}
+}
 
 var generateBoard = function() {
 	var totalWidth = 600;
