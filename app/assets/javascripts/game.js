@@ -88,6 +88,8 @@ Game.prototype.update = function() {
 						break;
 					case 10:
 						$(this.board[i][j].div).text("*");
+						var html = "<img src='assets/flag.png' width='40' height='60'>"
+						$(this.board[i][j].div).html(html);
 						break;
 				}
 				$(this.board[i][j].div).css("color",color);
