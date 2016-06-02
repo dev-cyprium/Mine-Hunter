@@ -146,6 +146,37 @@ article {
 	}
 }
 
+#score-form-link {
+	display: none;
+	text-align: center;
+	width: 200px;
+	background-color: #ccff33;
+	margin: auto;
+	line-height: 50px;
+	a {
+		display: block;
+		text-decoration: none;
+		color: black;
+		&:hover {
+			background-color: #595959;
+		}
+	}
+}
+
+#score-form {
+	text-align: center;
+	width: 200px;
+	background-color: #ccff33;
+	margin: 15px auto;
+	input {
+		width: 100px;
+	}
+	input[type="submit"] {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
 /* Scores table */
 table {
 	th {
@@ -161,3 +192,4 @@ table {
 		height: 50px;
 	}
 }
+

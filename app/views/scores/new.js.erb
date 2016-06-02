@@ -1,0 +1,6 @@
+// TODO: Check if the time has been tampered with
+
+$("#score-form").html("<%= j( render 'form') %>").hide();
+$("#score-form").show(1000);
+var time = parseInt($("time").text());
+$("#score_time").val(time);

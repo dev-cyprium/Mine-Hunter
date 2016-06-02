@@ -1,0 +1,32 @@
+[33m6b394df[m Add score listing
+[33m7aa5be2[m Recompiled asset pipeline for production
+[33m1ec8740[m Fix heroku bug
+[33mdaa8331[m Removed unneceserry TODO
+[33m2b0a02f[m Lowered difficulty (n of mines from 20 -> 16)
+[33m4f7138b[m Finish jQuery game
+[33m3da95df[m Add game over event
+[33ma125c9f[m Add UI elements and info panel
+[33m5d8fcde[m Fixed clicking on game
+[33mf1c0163[m Add ctrl+click functionality
+[33mc3b9fd0[m Add flag sprite
+[33mfaac544[m Add mine character
+[33mcb6fd39[m Add reveal alghoritam
+[33m9cdb3b4[m Merge branch 'master' of github.com:dev-cyprium/Mine-Hunter
+[33m12b959d[m Redesign of the mine-board alghoritam
+[33m5d2cb11[m Add mines!
+[33m5db04d0[m Add mines!
+[33mec7563c[m Fix timer issue with rails
+[33mfcc35f7[m Add timer
+[33mc0af6b0[m Change number colors
+[33m13e2e38[m Add numbers!
+[33m2cba80f[m Add interactive clicking
+[33maa69afa[m Improved animations
+[33mc9597c4[m Fix jQuery issue with Rails
+[33m5c3d6e8[m Fix grid generation
+[33ma003d03[m Add Game view
+[33m13e2b4b[m Add About(Home) page
+[33mbcddd0c[m Add static_pages controller
+[33m5933ebe[m Add minitest reporters for color support
+[33mb7c6ba3[m Add heroku support
+[33mbc8fb6b[m Add game description
+[33mbfdc402[m Initialize Rails framework

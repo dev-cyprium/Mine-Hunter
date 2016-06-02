@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get "home" => "static_pages#home"
   get "game" => "static_pages#game"
 
-  resources :scores, only: [ :index, :create ]
+  resources :scores, only: [ :index, :create, :new ]
 end

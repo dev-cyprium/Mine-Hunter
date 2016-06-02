@@ -166,7 +166,7 @@ Game.prototype.populate = function(cx, cy) {
 // Class static variables
 Game.first_click = true
 Game.gave_over = false;
-Game.mines = 16;
+Game.mines = 2; // mines: 16
 
 // game instance
 var game = new Game();
@@ -196,9 +196,15 @@ var onFieldClick = function(event) {
 		}
 		$("#mines").text(Game.mines - game.getFlagCount());	
 		if(game.check_victory()) {
+			// WIN condition action
 			Game.game_over = true;
+			var time = $("#time time").text();
+			clearInterval(game.interval);
+			$("#time time").text(time);
 			alert("Congratulations! You've won");
-			// window.location.replace(<%= new_score_path %>);
+			$("#game").hide();
+			$("#score-form-link").slideDown(500);
+
 		}
 		return;
 	}
