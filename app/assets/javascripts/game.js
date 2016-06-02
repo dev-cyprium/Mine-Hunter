@@ -68,7 +68,6 @@ Game.prototype.getFlagCount = function() {
 }
 
 Game.prototype.check_victory = function() {
-	console.log("Flags: " + this.getFlagCount());
 	if(this.getFlagCount() == Game.mines) {
 		var counter = 0;
 		for(var i=0; i < this.rows; i++) {
@@ -78,7 +77,6 @@ Game.prototype.check_victory = function() {
 				}
 			}
 		}
-		console.log("Counter: " + counter);
 		if(counter == Game.mines) return true;
 	}
 	return false;
