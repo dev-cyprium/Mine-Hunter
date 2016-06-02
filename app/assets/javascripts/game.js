@@ -166,7 +166,7 @@ Game.prototype.populate = function(cx, cy) {
 // Class static variables
 Game.first_click = true
 Game.gave_over = false;
-Game.mines = 2; // mines: 16
+Game.mines = 16; // mines: 16
 
 // game instance
 var game = new Game();
