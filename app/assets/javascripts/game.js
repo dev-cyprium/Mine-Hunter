@@ -55,6 +55,35 @@ var countMines = function(x,y,board,rows,cols) {
 	return count;
 }
 
+Game.prototype.getFlagCount = function() {
+	var flags = 0;
+	for(var i = 0; i < this.rows; i++) {
+		for(var j = 0; j < this.cols; j++) {
+			if(this.board[i][j].flagged) {
+				flags++;
+			}
+		}
+	}
+	return flags;
+}
+
+Game.prototype.check_victory = function() {
+	console.log("Flags: " + this.getFlagCount());
+	if(this.getFlagCount() == Game.mines) {
+		var counter = 0;
+		for(var i=0; i < this.rows; i++) {
+			for(var j=0; j < this.cols; j++) {
+				if(this.board[i][j].flagged && this.board[i][j].value == 10) {
+					counter++;
+				}
+			}
+		}
+		console.log("Counter: " + counter);
+		if(counter == Game.mines) return true;
+	}
+	return false;
+}
+
 Game.prototype.update = function() {
 	for(var i=0;i < this.rows; i++) {
 		for(var j=0; j < this.cols; j++) {
@@ -101,7 +130,7 @@ Game.prototype.update = function() {
 };
 
 Game.prototype.populate = function(cx, cy) {
-	var mines = 20;
+	var mines = Game.mines;
 
 	// create an empty location around cursor without mines
 	// TODO: FIX cornet cases!!! important
@@ -140,6 +169,7 @@ Game.prototype.populate = function(cx, cy) {
 // Class static variables
 Game.first_click = true
 Game.gave_over = false;
+Game.mines = 20;
 
 // game instance
 var game = new Game();
@@ -149,6 +179,7 @@ var onFieldClick = function(event) {
 		alert("GAME OVER(press Game to play again)")
 		return;
 	}
+
 	/* <div id="cell-i-j"></div> */
 	row = parseInt($(this).attr('id').charAt(5));
 	col = parseInt($(this).attr('id').charAt(7));
@@ -157,13 +188,27 @@ var onFieldClick = function(event) {
 	// TODO: Ask the server for the board data
 
 	// TEMP -> jQuery generated game
-	if(event.ctrlKey) {
-		$(this).css("background","#1ab2ff");
+	if(event.ctrlKey && !Game.first_click) {
+		if(game.board[row][col].flagged) {
+			$(this).css("background","gray");
+			game.board[row][col].flagged = false;
+		} else if(!game.board[row][col].visible) {
+			$(this).css("background","#1ab2ff");
+			game.board[row][col].flagged = true;
+			
+		}
+		$("#mines").text(Game.mines - game.getFlagCount());	
+		if(game.check_victory()) {
+			Game.game_over = true;
+			alert("Congratulations! You've won");
+			// window.location.replace(<%= new_score_path %>);
+		}
 		return;
 	}
 
 	if(Game.first_click) {
 		Game.first_click = false;
+		$("#mines").text(Game.mines);
 		game.interval = setInterval(function() {
 			$('#time time').text(game.counter);
 			game.counter++;
@@ -186,7 +231,6 @@ var onFieldClick = function(event) {
 	}
 	
 	game.update(row, col);
-	
 }
 
 var revealMines = function() {
