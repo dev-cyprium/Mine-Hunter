@@ -133,7 +133,6 @@ Game.prototype.populate = function(cx, cy) {
 	var mines = Game.mines;
 
 	// create an empty location around cursor without mines
-	// TODO: FIX cornet cases!!! important
 	var xoffset = 1;
 	var yoffset = 1;
 	for(var i = cx-xoffset; i <= cx+xoffset; i++) {
