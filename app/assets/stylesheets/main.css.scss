@@ -29,7 +29,7 @@ nav {
 	h2 {
 		font-size: 1.2em;
 	}
-	margin-bottom: 100px;
+	margin-bottom: 70px;
 }
 
 #links {
@@ -89,13 +89,18 @@ article {
 
 /* Game */
 #time {
+	position: absolute;
+	font-size: 1em;
 	text-align: center;
+	top: 7%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #game {
 	position: relative;
 	width: 600px;
-	height: 600px;
+	height: 700px;
 	background-color: #404040;
 	margin: auto;
 	margin-bottom: 200px;
@@ -111,6 +116,10 @@ article {
 	h1 {
 		text-align: center;
 		padding-top: 25%;
+	}
+	h2 {
+		text-align: center;
+		padding-top: 20px;
 	}
 	.cell { 
 		box-sizing: border-box;
