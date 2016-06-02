@@ -88,8 +88,6 @@ Game.prototype.update = function() {
 						break;
 					case 10:
 						$(this.board[i][j].div).text("*");
-						var html = "<img src='assets/flag.png' width='40' height='60'>"
-						$(this.board[i][j].div).html(html);
 						break;
 				}
 				$(this.board[i][j].div).css("color",color);
@@ -141,7 +139,7 @@ Game.first_click = true
 // game instance
 var game = new Game();
 
-var onFieldClick = function() {
+var onFieldClick = function(event) {
 	/* <div id="cell-i-j"></div> */
 	row = parseInt($(this).attr('id').charAt(5));
 	col = parseInt($(this).attr('id').charAt(7));
@@ -150,6 +148,11 @@ var onFieldClick = function() {
 	// TODO: Ask the server for the board data
 
 	// TEMP -> jQuery generated game
+	if(event.ctrlKey) {
+		$(this).css("background","crimson");
+		return;
+	}
+
 	if(Game.first_click) {
 		Game.first_click = false;
 		game.interval = setInterval(function() {
@@ -158,6 +161,8 @@ var onFieldClick = function() {
 		}, 1000);
 		game.populate(row,col);
 	}
+
+	
 	reveal(row, col);
 	game.update(row, col);
 	
