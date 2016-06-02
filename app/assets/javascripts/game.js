@@ -247,6 +247,9 @@ $(document).on('page:load',function() {
 	Game.first_click = true;
 	clearInterval(game.interval);
 	game.counter = 0;
+
+	// Reset the game instance to fix a bug
+	game = new Game();
 	main();
 });
 $(document).ready(main);
