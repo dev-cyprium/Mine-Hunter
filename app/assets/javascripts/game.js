@@ -18,6 +18,7 @@ Queue.prototype.isEmpty = function() {
 // Cell class
 var Cell = function(x,y) {
 	this.visible = false;
+	this.flagged = false;
 	this.value = 0;
 	this.div = null;
 	this.x = x;
@@ -89,6 +90,9 @@ Game.prototype.update = function() {
 					case 10:
 						$(this.board[i][j].div).text("*");
 						break;
+					case 11:
+						$(this.board[i][j].div).text("*");
+						$(this.board[i][j].div).css("background-color","crimson");
 				}
 				$(this.board[i][j].div).css("color",color);
 			}
@@ -133,13 +137,18 @@ Game.prototype.populate = function(cx, cy) {
 
 };
 
+// Class static variables
 Game.first_click = true
-
+Game.gave_over = false;
 
 // game instance
 var game = new Game();
 
 var onFieldClick = function(event) {
+	if(Game.game_over) {
+		alert("GAME OVER(press Game to play again)")
+		return;
+	}
 	/* <div id="cell-i-j"></div> */
 	row = parseInt($(this).attr('id').charAt(5));
 	col = parseInt($(this).attr('id').charAt(7));
@@ -149,7 +158,7 @@ var onFieldClick = function(event) {
 
 	// TEMP -> jQuery generated game
 	if(event.ctrlKey) {
-		$(this).css("background","crimson");
+		$(this).css("background","#1ab2ff");
 		return;
 	}
 
@@ -163,9 +172,33 @@ var onFieldClick = function(event) {
 	}
 
 	
-	reveal(row, col);
+
+	// Mine was clicked -> reveal all mines and display game over
+	if(game.board[row][col].value == 10) {
+		// GAME OVER
+		Game.game_over = true;
+		revealMines();
+		var time = $("#time time").text();
+		clearInterval(game.interval);
+		$("#time time").text(time);
+	} else {
+		reveal(row, col);	
+	}
+	
 	game.update(row, col);
 	
+}
+
+var revealMines = function() {
+	for(var i=0;i < game.rows;i++) {
+		for(var j=0; j < game.cols;j++) {
+			if(game.board[i][j].value == 10) {
+				game.board[i][j].visible = true;
+				// State that makes the mines red, GAME OVER
+				game.board[i][j].value = 11;
+			}
+		}
+	}	
 }
 
 var getNeighbours = function(cell, visited) {
@@ -245,6 +278,7 @@ var main = function() {
 $(document).on('page:load',function() {
 	// Reset on page:load ( the page dosn't get refreshed )
 	Game.first_click = true;
+	Game.game_over = false;
 	clearInterval(game.interval);
 	game.counter = 0;
 
