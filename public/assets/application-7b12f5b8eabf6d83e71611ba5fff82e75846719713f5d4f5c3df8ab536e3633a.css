@@ -1,0 +1,178 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+/* Info/Score pages */
+/* line 5, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+body {
+  background: linear-gradient(#996699, #3399ff) no-repeat;
+  background-color: #3399ff;
+}
+
+/* line 19, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+nav {
+  margin-bottom: 70px;
+}
+/* line 20, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+nav h1, nav h2 {
+  text-align: center;
+  font-family: "Montserrat";
+}
+/* line 25, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+nav h1 {
+  font-size: 1.7em;
+}
+/* line 29, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+nav h2 {
+  font-size: 1.2em;
+}
+
+/* line 35, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#links {
+  height: 100px;
+  width: 70%;
+  min-width: 300px;
+  margin: auto;
+  border: 1px solid gray;
+  background-color: #ccff33;
+  box-shadow: 0px 15px 13px -10px black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+}
+/* line 47, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#links .item {
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}
+/* line 54, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#links .item a {
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  color: black;
+  text-decoration: none;
+  transition: all 0.4s;
+}
+/* line 63, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#links .item a:hover {
+  background-color: #99cc00;
+  border-radius: 5px;
+}
+/* line 68, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#links .item:not(:last-child) {
+  border-right: 1px solid black;
+  border-radius: 0;
+}
+
+/* line 77, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+article {
+  width: 60%;
+  margin: auto;
+  background-color: #99CC99;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: "Montserrat";
+}
+/* line 84, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+article a {
+  text-decoration: none;
+  color: #003366;
+}
+
+/* Game */
+/* line 91, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#time {
+  position: absolute;
+  font-size: 1em;
+  text-align: center;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* line 100, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game {
+  position: relative;
+  width: 600px;
+  height: 700px;
+  background-color: #404040;
+  margin: auto;
+  margin-bottom: 200px;
+  border-radius: 10px;
+}
+/* line 108, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game button {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* line 116, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game h1 {
+  text-align: center;
+  padding-top: 25%;
+}
+/* line 120, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game h2 {
+  text-align: center;
+  padding-top: 20px;
+}
+/* line 124, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game h3 {
+  text-align: center;
+  padding-top: 35%;
+}
+/* line 128, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game p {
+  text-align: center;
+}
+/* line 131, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game .cell {
+  box-sizing: border-box;
+  float: left;
+  background-color: gray;
+  border: 3px solid #404040;
+  border-radius: 10px;
+  transition: background-color 0.4s;
+  font-size: 32px;
+  line-height: 60px;
+  text-align: center;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+/* line 143, /home/cyprium/the_odin_project/Rails/mine-hunter/app/assets/stylesheets/main.css.scss */
+#game .cell:hover {
+  background-color: #595959;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
