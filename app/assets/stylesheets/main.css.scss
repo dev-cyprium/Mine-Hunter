@@ -145,3 +145,19 @@ article {
 		}
 	}
 }
+
+/* Scores table */
+table {
+	th {
+		background-color: #248f24;
+		height: 75px;
+	}
+	tr, td, th {
+		width: 400px;
+		text-align: center;
+	}
+
+	td {
+		height: 50px;
+	}
+}

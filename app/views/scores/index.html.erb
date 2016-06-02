@@ -1,0 +1,20 @@
+<article>
+	<h1>Here are the top players of the game</h1>
+	<table>
+		<tr>
+			<th>Player name</th>
+			<th>Score</th>
+		</tr>
+		<% 10.times do |i| %>
+		<tr>
+			<% if(!@scores[i].nil?) %>
+				<td><%= @scores[i].name %></td>
+				<td><%= @scores[i].time %></td>
+			<% else %>
+				<td>n/a</td>
+				<td>n/a</td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+</article>
