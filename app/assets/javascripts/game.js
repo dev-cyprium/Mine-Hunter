@@ -274,6 +274,7 @@ var reveal = function(cx, cy) {
 		var cell = queue.dequeue();
 		visited.push(cell);
 		cell.visible = true;
+		cell.flagged = false;
 		if (cell.value > 0) continue;
 		var neighbours = getNeighbours(cell, visited);
 		for(var i=0;i < neighbours.length; i++) {
