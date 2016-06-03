@@ -2,7 +2,7 @@
 
 ## About
 Minehunter is a game inspired by Minesweper that you can play in your browser. It
-was made in 6 hours as a fun project.
+was made ~~in 6 hours as a fun project.~~ In the end, it took me a week to complete it and polish out the bugs.
 
 ## Features
  * Fully functional online clone of Minesweeper
