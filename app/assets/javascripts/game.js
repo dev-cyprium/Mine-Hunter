@@ -209,6 +209,10 @@ var onFieldClick = function(event) {
 		return;
 	}
 
+
+	// If a flagged piece was clicked, do nothing
+	if(game.board[row][col].flagged) return;
+
 	if(Game.first_click) {
 		Game.first_click = false;
 		$("#mines").text(Game.mines);
