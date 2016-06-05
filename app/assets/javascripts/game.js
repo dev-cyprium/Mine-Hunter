@@ -185,7 +185,7 @@ var onFieldClick = function(event) {
 	// TODO: Ask the server for the board data
 
 	// TEMP -> jQuery generated game
-	if(event.ctrlKey && !Game.first_click) {
+	if(event.shiftKey && !Game.first_click) {
 		if(game.board[row][col].flagged) {
 			$(this).css("background","gray");
 			game.board[row][col].flagged = false;
